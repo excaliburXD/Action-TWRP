@@ -56,12 +56,12 @@ jobs:
       
     - name: Clone device tree
       run: |
-        git clone https://github.com/excaliburXD/omni_device_tree_infinix_X695C.git -b twrp-11 ./device/infinix/Infinix-X695C
+        git clone https://github.com/excaliburXD/twrp_android_device_tree_x695c.git -b TWRP-11 ./device/infinix/X695C
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Sync Device Dependencies
       run: |
-        bash ${GITHUB_WORKSPACE}/scripts/convert.sh device/infinix/Infinix-X695C/twrp.dependencies
+        bash ${GITHUB_WORKSPACE}/scripts/convert.sh device/infinix/X695C/twrp.dependencies
         repo sync -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       continue-on-error: true
@@ -75,11 +75,11 @@ jobs:
       run: |
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        lunch twrp_X695C-eng && make clean && make vendorbootimage -j$(nproc --all)
+        lunch twrp_X695C-eng && make clean && make bootimage -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
         name: twrp_X695C
-        path: workspace/out/target/product/Infinix-X695C/vendor_boot.img
+        path: workspace/out/target/product/X695C/boot.img
