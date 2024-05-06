@@ -25,11 +25,11 @@ on:
         default: 'device/infinix/Infinix-X695C'
       COMMON_TREE_URL:
         description: 'COMMON_TREE_URL (if no common tree, leave blank)'
-        required: true
+        required: false
         default: 'https://github.com/excaliburXD/twrp-device_transsion_mt6785-common'
       COMMON_PATH:
         description: 'COMMON_PATH (if no common tree, leave blank)'
-        required: true
+        required: false
         default: 'device/transsion/mt6785-common'
       DEVICE_NAME:
         description: 'DEVICE_NAME'
